@@ -22,4 +22,7 @@ module.exports = {
       version: "detect",
     },
   },
+  rules: {
+    "no-unused-bar": { argsIgnorePattern: "^_" },
+  },
 };
