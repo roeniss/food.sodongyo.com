@@ -16,13 +16,10 @@ module.exports = {
     sourceType: "module",
   },
   plugins: ["react"],
-  rules: {},
+  rules: { "no-unused-vars": "off" },
   settings: {
     react: {
       version: "detect",
     },
-  },
-  rules: {
-    "no-unused-bar": { argsIgnorePattern: "^_" },
   },
 };

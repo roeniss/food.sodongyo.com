@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Header from "./components/Header";
 import Content from "./components/Content";
 import Footer from "./components/Footer";
+import Splash from "./components/Splash";
 
 function App() {
-  console.log("STATUS TEST : process.env.NODE_ENV is -->", process.env.NODE_ENV);
+  const [delay, setDelay] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setDelay(false);
+    }, 200);
+  }, []);
   return (
     <div className="App">
-      <Header />
-      <Content />
-      <Footer />
+      <Splash transitionStart={!delay} />
+      {delay ? null : (
+        <>
+          <Header />
+          <Content />
+          <Footer />
+        </>
+      )}
     </div>
   );
 }
