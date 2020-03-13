@@ -49,7 +49,11 @@ body {
     }
   }
 }
-
+@media (min-width: 801px) {
+  .only-mobile {
+    visibility: hidden;
+  }
+}
 @media (max-width: 800px) {
   .full-screen {
     .center {
