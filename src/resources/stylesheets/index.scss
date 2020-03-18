@@ -48,6 +48,14 @@ $theme-colors: (
   position: absolute;
   top: 0;
   z-index: 9999;
+
+  @media (max-width: 800px) {
+    .center {
+      div.title {
+        font-size: 20px;
+      }
+    }
+  }
 }
 .splash {
   background-color: white;
@@ -77,16 +85,6 @@ $theme-colors: (
     visibility: hidden;
   }
 }
-@media (max-width: 800px) {
-  .full-screen {
-    .center {
-      div.title {
-        font-size: 20px;
-      }
-    }
-  }
-}
-
 .transition-style-2000ms-500ms {
   -webkit-transition: all 600ms cubic-bezier(0.645, 0.045, 0.355, 1) 1400ms;
   -moz-transition: all 600ms cubic-bezier(0.645, 0.045, 0.355, 1) 1400ms;
