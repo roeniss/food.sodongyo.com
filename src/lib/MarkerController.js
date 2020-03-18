@@ -31,7 +31,7 @@ class MarkerController {
   addWarpperMarkerIfNeeded() {
     const overlappedGeolocation = this._checkIfMarkerOverlapped();
     overlappedGeolocation.forEach(([y, x]) => {
-      this._addWrapperMarker(y, x, { type: "List", geolocation: [y, x] });
+      this._drawWrapperMarker(y, x, { type: "List", geolocation: [y, x] });
     });
   }
 
@@ -59,7 +59,7 @@ class MarkerController {
     return overlappedGeolocation;
   }
 
-  _addWrapperMarker(y, x, triggerData) {
+  _drawWrapperMarker(y, x, triggerData) {
     const marker = new naver.maps.Marker({
       position: new naver.maps.LatLng(y, x),
       map: this.map,
