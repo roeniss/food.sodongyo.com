@@ -1,7 +1,9 @@
+@import url("https://fonts.googleapis.com/css?family=Gothic+A1:400,900&display=swap");
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: "Gothic A1", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -10,6 +12,12 @@ body {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 } */
+
+$theme-colors: (
+  "primary": #db4139,
+  "secondary": #203864,
+  "third": #ffffff,
+);
 
 .cardBtn {
   margin: 0 10px 10px 0;
@@ -115,3 +123,4 @@ body {
 .visual-showup {
   opacity: 1 !important;
 }
+@import "~bootstrap/scss/bootstrap";
