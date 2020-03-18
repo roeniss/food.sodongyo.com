@@ -32,7 +32,7 @@ const SingleItemModal = (props) => {
         </Modal.Header>
         <Modal.Body>
           <Card>
-            <Card.Img variant="top" src={`/images/${id}.jpg`} />
+            <Card.Img variant="top" src={`/images/foods/${id}.jpg`} />
             <Card.Body>
               <Card.Title>{location}</Card.Title>
               <Card.Text>{description}</Card.Text>
