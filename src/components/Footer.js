@@ -14,7 +14,10 @@ const Footer = () => {
             본 사이트의 모든 리뷰는 별도의 혜택을 제공받지 않았으며, 맛게살은 비영리 프로젝트입니다.
           </i>
           <br />
-          맛동요 :: All Rights Reserved.
+          <a href="https://github.com/roeniss/food.sodongyo.com" className="no-hover-color">
+            맛동요&nbsp;
+          </a>
+          :: All Rights Reserved.
         </span>
       </Navbar>
     </>

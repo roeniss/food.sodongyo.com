@@ -36,50 +36,56 @@ $theme-colors: (
 .navbar-footer {
   padding: 10px 5px;
   text-align: center;
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 }
 .disclaimer {
   color: gray;
   font-size: 10px;
 }
 
-.full-screen {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  z-index: 9999;
+.splash {
+  background-color: white;
 
-  @media (max-width: 800px) {
+  &.full-screen {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 9999;
+
     .center {
+      position: absolute;
+      left: 50%;
+      top: 40%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      img.logo {
+        opacity: 0;
+        padding-top: 50px;
+        max-width: 400px;
+        width: 40vw;
+        height: auto;
+      }
       div.title {
-        font-size: 20px;
+        opacity: 0;
+        padding-top: 50px;
+        font-size: 30px;
+        font-weight: bold;
+      }
+      @media (max-width: 800px) {
+        & {
+          div.title {
+            font-size: 20px;
+          }
+        }
       }
     }
   }
 }
-.splash {
-  background-color: white;
-  .center {
-    position: absolute;
-    left: 50%;
-    top: 40%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    img.logo {
-      opacity: 0;
-      padding-top: 50px;
-      max-width: 400px;
-      width: 40vw;
-      height: auto;
-    }
-    div.title {
-      opacity: 0;
-      padding-top: 50px;
-      font-size: 30px;
-      font-weight: bold;
-    }
-  }
-}
+
 @media (min-width: 801px) {
   .only-mobile {
     visibility: hidden;
