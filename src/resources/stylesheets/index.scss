@@ -26,6 +26,13 @@ $theme-colors: (
 .clickable {
   cursor: pointer;
 }
+.navbar {
+  @media (max-width: 460px) {
+    .hide-on-overflow {
+      display: none;
+    }
+  }
+}
 .navbar-footer {
   padding: 10px 5px;
   text-align: center;
