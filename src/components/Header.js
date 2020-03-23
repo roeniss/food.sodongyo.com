@@ -4,7 +4,7 @@ import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 const Header = () => {
   return (
     <Navbar expand="xl" bg="primary" variant="dark" fixed="top" className="header">
-      <Navbar.Brand href="/" class="text-white">
+      <Navbar.Brand href="/" className="text-white">
         맛동요 <span className="hide-on-overflow">:: 맛게살의 동선 요기있네 </span> 🍕🍗🍺
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />

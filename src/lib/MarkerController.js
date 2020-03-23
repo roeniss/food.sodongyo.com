@@ -20,6 +20,13 @@ class MarkerController {
       const marker = new naver.maps.Marker({
         position: new naver.maps.LatLng(y, x),
         map: this.map,
+        icon: {
+          url: `/images/markers/marker${location.category1}.png`,
+          scaledSize: {
+            width: "40",
+            height: "40"
+          }
+        }
       });
       naver.maps.Event.addListener(marker, "click", () => {
         this.useStateSetter(location);
@@ -69,6 +76,7 @@ class MarkerController {
       this.useStateSetter(triggerData);
     });
   }
+
 }
 
 const markerController = new MarkerController();
