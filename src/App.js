@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Content from "./components/Content";
 import Footer from "./components/Footer";
@@ -13,14 +13,14 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <Splash transitionStart={!delay} />
-      {delay ? null : (
-        <>
-          <Header />
-          <Content />
-          <Footer />
-        </>
-      )}
+      {/* <Splash transitionStart={!delay} /> */}
+      {/* {delay ? null : ( */}
+      <>
+        <Header />
+        <Content />
+        <Footer />
+      </>
+      {/* )} */}
     </div>
   );
 }

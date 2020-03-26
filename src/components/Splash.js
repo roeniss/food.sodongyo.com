@@ -14,6 +14,7 @@ const Splash = (props) => {
         <img
           className={(transitionStart ? "visual-showup" : "") + " logo transition-style-0ms-500ms"}
           src="images/matgesal_transparent.png"
+          alt="logo"
         />
         <div
           className={

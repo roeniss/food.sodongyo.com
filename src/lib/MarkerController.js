@@ -6,8 +6,9 @@ class MarkerController {
   constructor(map, useStateSetter) {
     this.markerGeoDict = {};
     this.locations = locations;
-    this._markerDictInitialize();
+    this._initializeMarkerDict();
   }
+
   setVariables(map, useStateSetter) {
     this.map = map;
     this.useStateSetter = useStateSetter;
@@ -16,9 +17,11 @@ class MarkerController {
   drawMarkers() {
     this.locations.forEach((location) => {
       const [y, x] = location.geolocation;
+
+      this.markerGeoDict[y][x].push(location);
       location.type = "Item";
       const marker = new naver.maps.Marker({
-        position: new naver.maps.LatLng(y, x),
+        position: this._getMakerPosition(y, x),
         map: this.map,
         icon: {
           url: `/images/markers/marker${location.category1}.png`,
@@ -31,7 +34,6 @@ class MarkerController {
       naver.maps.Event.addListener(marker, "click", () => {
         this.useStateSetter(location);
       });
-      this.markerGeoDict[y][x].push(location);
     });
   }
 
@@ -43,10 +45,25 @@ class MarkerController {
   }
 
   getLocationInfoById(id) {
-    return this.locations[id - 1]; // id는 1부터 시작하는 반면, array는 0부터 시작하므로 마이너스 1 (-1)
+    return this.locations[id - 1]; // id는 1부터 시작하는 반면, array는 0부터 시작하므로.
   }
 
-  _markerDictInitialize() {
+  _getMakerPosition(y, x) {
+    if (this.markerGeoDict[y][x].length === 1) {
+      return new naver.maps.LatLng(y, x);
+    } else {
+      const offset = 0.00005
+      const duplicateCnt = this.markerGeoDict[y][x].length - 2
+      const offsetArr = [[-offset, 0], [0, offset], [offset, 0], [0, -offset],]
+      y = parseFloat(y) + offsetArr[duplicateCnt % 4][1] * (parseInt(duplicateCnt / 4) + 1);
+      x = parseFloat(x) + offsetArr[duplicateCnt % 4][0] * (parseInt(duplicateCnt / 4) + 1);
+      console.log(duplicateCnt, y, x);
+
+      return new naver.maps.LatLng(y, x);
+    }
+  }
+
+  _initializeMarkerDict() {
     this.locations.forEach((location) => {
       const [y, x] = location.geolocation;
       if (!this.markerGeoDict[y]) {

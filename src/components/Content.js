@@ -20,8 +20,8 @@ const Content = () => {
     const map = drawMap("map");
     markerController.setVariables(map, setModalShow);
     markerController.drawMarkers();
-    markerController.addWarpperMarkerIfNeeded();
-  }, []);
+    // markerControllesr.addWarpperMarkerIfNeeded();
+  }, [markerController]);
 
   return (
     <>
