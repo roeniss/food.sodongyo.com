@@ -2,14 +2,11 @@ import React from "react";
 import { Modal, Card, Button } from "react-bootstrap";
 import PropTypes from "prop-types";
 import { getAppName } from "../../lib/helper";
-import MarkerController from "../../lib/MarkerController";
 
 const SingleItemModal = (props) => {
   console.log("[SingleItemModal] current props :", props.data);
-  console.log(props);
-  const { id, name, location, link, description, geolocation } = props.marker
-    ? MarkerController.getLocationInfoById(props.marker)
-    : props.data;
+
+  const { id, name, location, link, description, geolocation } = props.data;
 
   const openSsodam = (link) => window.open(`http://ssodam.com/content/${link}`, "_blank");
   const openNaver = () =>

@@ -1,8 +1,8 @@
 /*global naver */
 
 import React, { useEffect, useState } from "react";
-import MarkerController from "../lib/MarkerController";
-import ModalCenter from "./modals/ModalCenter";
+import markerController from "../lib/MarkerController";
+import SingleItemModal from "./modals/SingleItemModal";
 
 const drawMap = (divId) => {
   const map = new naver.maps.Map(divId, {
@@ -14,21 +14,18 @@ const drawMap = (divId) => {
 
 const Content = () => {
   const [modalShow, setModalShow] = useState(null);
-  const [markerController, _] = useState(MarkerController);
 
   useEffect(() => {
     const map = drawMap("map");
     markerController.setVariables(map, setModalShow);
     markerController.drawMarkers();
-    // markerControllesr.addWarpperMarkerIfNeeded();
   }, [markerController]);
 
   return (
     <>
       <div id="map" style={{ width: "100vw", height: "100vh" }}></div>
-      {/* <InfoModal show={true} onHide={() => setModalShow(null)} data={{ 1: 2 }} /> */}
       {modalShow ? (
-        <ModalCenter show={!!modalShow} onHide={() => setModalShow(null)} data={modalShow} />
+        <SingleItemModal show={!!modalShow} onHide={() => setModalShow(null)} data={modalShow} />
       ) : null}
     </>
   );

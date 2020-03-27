@@ -1,12 +1,16 @@
 /*global naver */
 
-import locations from "../resources/data/mapdata.js";
+import locations from "../resources/data/mapdata";
+import category from "../resources/data/category"
 
 class MarkerController {
-  constructor(map, useStateSetter) {
-    this.markerGeoDict = {};
+  constructor() {
     this.locations = locations;
+    this.markerGeoDict = {};
     this._initializeMarkerDict();
+    this.map = null;
+    this.useStateSetter = null;
+    this.markerCategoryArr = Array(category.length).fill(null).map(() => Array());
   }
 
   setVariables(map, useStateSetter) {
@@ -25,27 +29,30 @@ class MarkerController {
         map: this.map,
         icon: {
           url: `/images/markers/marker${location.category1}.png`,
-          scaledSize: {
-            width: "40",
-            height: "40"
-          }
-        }
+          scaledSize: new naver.maps.Size(40, 40),
+        },
       });
+
       naver.maps.Event.addListener(marker, "click", () => {
         this.useStateSetter(location);
       });
+
+      this.markerCategoryArr[location.category1].push(marker)
     });
+    console.log(this.markerCategoryArr[0][0].getShape())
   }
 
-  addWarpperMarkerIfNeeded() {
-    const overlappedGeolocation = this._checkIfMarkerOverlapped();
-    overlappedGeolocation.forEach(([y, x]) => {
-      this._drawWrapperMarker(y, x, { type: "List", geolocation: [y, x] });
-    });
+  setCategoryVisibility(ids, result) {
+    this.markerCategoryArr.forEach((category, id) => {
+      if (!ids.includes(id)) return false; // "continue"
+      category.forEach(marker => {
+        marker.setVisible(result)
+      })
+    })
   }
 
-  getLocationInfoById(id) {
-    return this.locations[id - 1]; // id는 1부터 시작하는 반면, array는 0부터 시작하므로.
+  isVisibleCategory(id) {
+    return this.markerCategoryArr[id][0].getVisible();
   }
 
   _getMakerPosition(y, x) {
@@ -53,12 +60,10 @@ class MarkerController {
       return new naver.maps.LatLng(y, x);
     } else {
       const offset = 0.00005
-      const duplicateCnt = this.markerGeoDict[y][x].length - 2
+      const duplicateCnt = this.markerGeoDict[y][x].length - 2 // 0부터 시작하기 위해
       const offsetArr = [[-offset, 0], [0, offset], [offset, 0], [0, -offset],]
       y = parseFloat(y) + offsetArr[duplicateCnt % 4][1] * (parseInt(duplicateCnt / 4) + 1);
       x = parseFloat(x) + offsetArr[duplicateCnt % 4][0] * (parseInt(duplicateCnt / 4) + 1);
-      console.log(duplicateCnt, y, x);
-
       return new naver.maps.LatLng(y, x);
     }
   }
@@ -82,18 +87,6 @@ class MarkerController {
     });
     return overlappedGeolocation;
   }
-
-  _drawWrapperMarker(y, x, triggerData) {
-    const marker = new naver.maps.Marker({
-      position: new naver.maps.LatLng(y, x),
-      map: this.map,
-      zIndex: 999,
-    });
-    naver.maps.Event.addListener(marker, "click", () => {
-      this.useStateSetter(triggerData);
-    });
-  }
-
 }
 
 const markerController = new MarkerController();
