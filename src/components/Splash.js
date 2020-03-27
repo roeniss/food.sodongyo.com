@@ -21,7 +21,7 @@ const Splash = (props) => {
             (transitionStart ? "visual-showup" : "") + " title transition-style-300ms-500ms"
           }
         >
-          &ldquo;맛동요&rdquo; <br className="only-mobile" /> 맛게살 X 서동요 합작 프로젝트
+          &ldquo;맛동요&rdquo; <br className="only-mobile" /> 맛게살 X 서동요 <br className="only-mobile" /> 합작 프로젝트
         </div>
       </div>
     </div>

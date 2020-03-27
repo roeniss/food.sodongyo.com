@@ -1,6 +1,7 @@
 import { rgbToHex } from "../../lib/helper"
 
 export default [
+  // id === mainCategory
   { id: 0, rgb: '229,58,64', hex: rgbToHex('229,58,64'), subCategory: ["한식", "국수", "분식"] },
   { id: 1, rgb: '255,255,0', hex: rgbToHex('255,255,0'), subCategory: ["중식", "기타"] },
   { id: 2, rgb: '88,201,185', hex: rgbToHex('88,201,185'), subCategory: ["일식", "돈까스"] },

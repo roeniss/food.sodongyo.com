@@ -28,7 +28,7 @@ class MarkerController {
         position: this._getMakerPosition(y, x),
         map: this.map,
         icon: {
-          url: `/images/markers/marker${location.category1}.png`,
+          url: `/images/markers/marker${location.mainCategory}.png`,
           scaledSize: new naver.maps.Size(40, 40),
         },
       });
@@ -37,7 +37,7 @@ class MarkerController {
         this.useStateSetter(location);
       });
 
-      this.markerCategoryArr[location.category1].push(marker)
+      this.markerCategoryArr[location.mainCategory].push(marker)
     });
     console.log(this.markerCategoryArr[0][0].getShape())
   }

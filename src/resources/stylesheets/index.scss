@@ -81,6 +81,13 @@ $theme-colors: (
             font-size: 20px;
           }
         }
+      } 
+      @media (max-width: 330px) {
+        & {
+          div.title {
+            font-size: 14px;
+          }
+        }
       }
     }
   }
@@ -89,6 +96,7 @@ $theme-colors: (
 @media (min-width: 801px) {
   .only-mobile {
     visibility: hidden;
+    display: none;
   }
 }
 .transition-style-2000ms-500ms {

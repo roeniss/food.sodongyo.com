@@ -13,14 +13,14 @@ function App() {
   }, []);
   return (
     <div className="App">
-      {/* <Splash transitionStart={!delay} /> */}
-      {/* {delay ? null : ( */}
-      <>
-        <Header />
-        <Content />
-        <Footer />
-      </>
-      {/* )} */}
+      <Splash transitionStart={!delay} />
+      {delay ? null : (
+        <>
+          <Header />
+          <Content />
+          <Footer />
+        </>
+      )}
     </div>
   );
 }
