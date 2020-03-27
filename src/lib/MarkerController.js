@@ -41,9 +41,9 @@ class MarkerController {
     });
   }
 
-  setCategoryVisibility(ids, result) {
+  setCategoryVisibilityOnly(ids) {
     this.markerCategoryArr.forEach((category, id) => {
-      if (!ids.includes(id)) return false; // "continue"
+      const result = ids.includes(id);
       category.forEach(marker => {
         marker.setVisible(result)
       })
