@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Modal, Card } from "react-bootstrap";
 import PropTypes from "prop-types";
 import markerController from "../../lib/MarkerController";
+import { isDevMode } from "../../lib/helper";
 import category from "../../resources/data/category"
 
 const MarkerCard = (markerData) => {
@@ -28,7 +29,7 @@ const MarkerCard = (markerData) => {
 };
 
 const FilterModal = (props) => {
-  console.log("[FilterModal] current props :", props);
+  if (isDevMode()) console.log("[FilterModal] current props :", props);
 
   const render = () => {
     return category.map(entity => {

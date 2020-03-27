@@ -1,11 +1,11 @@
 import React from "react";
 import { Modal, Card, Button, Image, Badge, Nav } from "react-bootstrap";
 import PropTypes from "prop-types";
-import { getAppName } from "../../lib/helper";
+import { getAppName, isDevMode } from "../../lib/helper";
 import category from "../../resources/data/category"
 
 const SingleItemModal = (props) => {
-  console.log("[SingleItemModal] current props :", props.data);
+  if (isDevMode()) console.log("[SingleItemModal] current props :", props.data);
 
   const { id, name, location, link, description, mainCategory, subCategory } = props.data;
 
@@ -31,8 +31,6 @@ const SingleItemModal = (props) => {
     const targetCategory = category[mainCategory];
     const title = targetCategory.subCategory[subCategory]
     const color = targetCategory.rgb;
-    console.log(`rgba(${color}, 1.0)`)
-
     return <Badge style={{ color: 'white', backgroundColor: `rgba(${color}, 1.0)`, fontWeight: 'regular' }}>{title}</Badge>
   }
 

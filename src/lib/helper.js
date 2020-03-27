@@ -18,4 +18,8 @@ export const rgbToHex = (originalStr) => {
   const hex = "#" + r + g + b;
 
   return hex;
-} 
+}
+
+export const isDevMode = () => {
+  return process.env.NODE_ENV === "development"
+}

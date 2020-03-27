@@ -1,7 +1,9 @@
 import React from "react";
 import { Navbar, /* Button */ } from "react-bootstrap";
+import { } from "./Footers"
 
 const Footer = () => {
+
   return (
     <>
       <Navbar fixed="bottom" bg="secondary" variant="footer" className="justify-content-center">

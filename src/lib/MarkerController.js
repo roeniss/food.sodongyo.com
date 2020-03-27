@@ -39,7 +39,6 @@ class MarkerController {
 
       this.markerCategoryArr[location.mainCategory].push(marker)
     });
-    console.log(this.markerCategoryArr[0][0].getShape())
   }
 
   setCategoryVisibility(ids, result) {
