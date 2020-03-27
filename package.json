@@ -21,8 +21,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "syncBucketWithBuildFolder": "aws s3 sync build s3://food.sodongyo.com/",
-    "update": "npm-run-all --serial build syncBucketWithBuildFolder",
-    "purge": "./purge_cf_cache.sh"
+    "purge": "./purge_cf_cache.sh",
+    "update": "npm-run-all --serial purge syncBucketWithBuildFolder"
   },
   "eslintConfig": {
     "extends": "react-app"
