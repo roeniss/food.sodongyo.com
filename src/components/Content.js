@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import markerController from "../lib/MarkerController";
 import SingleItemModal from "./modals/SingleItemModal";
 
-const drawMap = (divId) => {
+const drawNewMap = (divId) => {
   const map = new naver.maps.Map(divId, {
     center: new naver.maps.LatLng(37.551004, 126.940992), // 시청
     zoom: 15,
@@ -16,7 +16,7 @@ const Content = () => {
   const [modalShow, setModalShow] = useState(null);
 
   useEffect(() => {
-    const map = drawMap("map");
+    const map = drawNewMap("map");
     markerController.setVariables(map, setModalShow);
     markerController.drawMarkers();
   }, [markerController]);

@@ -1,20 +1,36 @@
 import React from "react";
-import { Modal, Card, Button } from "react-bootstrap";
+import { Modal, Card, Button, Image, Container, Nav } from "react-bootstrap";
 import PropTypes from "prop-types";
 import { getAppName } from "../../lib/helper";
 
 const SingleItemModal = (props) => {
   console.log("[SingleItemModal] current props :", props.data);
 
-  const { id, name, location, link, description, geolocation } = props.data;
+  const { id, name, location, link, description, _geolocation } = props.data;
+
+  const goto = (url, fallback) => {
+    var script = document.createElement('script');
+    script.onload = function () {
+      window.open(url, "_blank");
+    }
+    script.onerror = function () {
+      window.open(fallback, "_blank");
+    }
+    script.setAttribute('src', url);
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
 
   const openSsodam = (link) => window.open(`http://ssodam.com/content/${link}`, "_blank");
-  const openNaver = () =>
-    window.open(
-      `nmap://map?lat=${geolocation[0]}&lng=${geolocation[1]}&zoom=15&appname=${getAppName()}`,
-      "_blank"
-    );
-  const openKakao = () => window.open(`daummaps://look?p=${geolocation.join(",")}`, "_blank");
+  const openNaver = () => goto(`nmap://search?query=${encodeURIComponent(location)}&appname=${getAppName()}`,
+    `https://map.naver.com/v5/search/${encodeURIComponent(location)}&appname=${getAppName()}`)
+  const openKakao = () => goto(`daummaps://search?query=${encodeURIComponent(location)}`,
+    `https://map.kakao.com/?q=${encodeURIComponent(location)}`)
+
+  const iconStyles = {
+    width: "30px",
+    height: "30px"
+  }
+
   return (
     <>
       <Modal
@@ -34,38 +50,40 @@ const SingleItemModal = (props) => {
               <Card.Title>{location}</Card.Title>
               <Card.Text>{description}</Card.Text>
               <br />
-              <Button
-                variant="primary"
-                onClick={() => openSsodam(link)}
-                className="cardBtn" /*style={{ margin: "0 10px 10px 0" }}*/
-              >
-                서담 리뷰 보러가기
-              </Button>
-              <Button
-                variant="warning"
-                onClick={() => openNaver()}
-                className="cardBtn" /*style={{ margin: "0 10px 10px 0" }}*/
-              >
-                네이버 지도 보러 가기
-              </Button>
-              <Button
-                variant="danger"
-                onClick={() => openKakao()}
-                className="cardBtn" /*style={{ margin: "0 10px 10px 0" }}*/
-              >
-                카카오 지도 보러 가기
-              </Button>
-              {/* <Button
-                variant="secondary"
-                onClick={props.onHide}
-                className="cardBtn" style={{ margin: "0 10px 10px 0" }}
-              >
-                닫기
-              </Button> */}
+
+              <Nav className="justify-content-end" activeKey="/home">
+                <Nav.Item>
+                  <Image
+                    src="/images/icons/ssodam.png"
+                    className="mr-3"
+                    alt="서담 아이콘"
+                    onClick={() => openSsodam(link)}
+                    style={iconStyles}
+                  />
+                </Nav.Item>
+                <Nav.Item>
+                  <Image
+                    src="/images/icons/naver_map.png"
+                    className="mr-3"
+                    onClick={() => openNaver()}
+                    alt="네이버 맵 아이콘"
+                    style={iconStyles}
+                  />
+                </Nav.Item>
+                <Nav.Item>
+                  <Image
+                    src="/images/icons/kakao_map.png"
+                    className="mr-3"
+                    onClick={() => openKakao()}
+                    alt="카카오 맵 아이콘"
+                    style={iconStyles}
+                  />
+                </Nav.Item>
+              </Nav>
             </Card.Body>
           </Card>
         </Modal.Body>
-      </Modal>
+      </Modal >
     </>
   );
 };

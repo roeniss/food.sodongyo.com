@@ -39,11 +39,13 @@ const Header = () => {
         </Nav>
       </Navbar.Collapse>
 
-      {modalShow ? (
-        <FilterModal show={!!modalShow} onHide={() => setModalShow(null)} />
-      ) : null}
+      {
+        modalShow ? (
+          <FilterModal show={!!modalShow} onHide={() => setModalShow(null)} />
+        ) : null
+      }
 
-    </Navbar>
+    </Navbar >
   );
 };
 
