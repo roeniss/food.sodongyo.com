@@ -5,13 +5,14 @@ import markerController from "../../lib/MarkerController";
 import { isDevMode } from "../../lib/helper";
 import category from "../../resources/data/category"
 
-const MarkerCard = (markerData) => {
+const MarkerCard = (markerData, onHide) => {
   const { id, hex, rgb, subCategory } = markerData;
   const [visible, setVisible] = useState(markerController.isVisibleCategory(id));
 
   const updateVisibility = (id) => {
     setVisible(!visible);
-    markerController.setCategoryVisibility([id], !visible);
+    markerController.setCategoryVisibilityOnly([id]);
+    onHide();
   }
 
   const styles = { /* borderColor: hex,*/ textAlign: "center" };
@@ -33,7 +34,7 @@ const FilterModal = (props) => {
 
   const render = () => {
     return category.map(entity => {
-      return MarkerCard(entity);
+      return MarkerCard(entity, props.onHide);
     })
   };
 
