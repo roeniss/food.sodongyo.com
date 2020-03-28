@@ -2,7 +2,7 @@ import React from "react";
 import { Modal, Card, Button, Image, Badge, Nav } from "react-bootstrap";
 import PropTypes from "prop-types";
 import { getAppName, isDevMode } from "../../lib/helper";
-import category from "../../resources/data/category"
+import category from "../../resources/data/category";
 
 const SingleItemModal = (props) => {
   if (isDevMode()) console.log("[SingleItemModal] current props :", props.data);
@@ -10,34 +10,46 @@ const SingleItemModal = (props) => {
   const { id, name, location, link, description, mainCategory, subCategory } = props.data;
 
   const goto = (url, fallback) => {
-    var script = document.createElement('script');
-    script.onload = function () {
+    var script = document.createElement("script");
+    script.onload = function() {
       window.open(url, "_blank");
-    }
-    script.onerror = function () {
+    };
+    script.onerror = function() {
       window.open(fallback, "_blank");
-    }
-    script.setAttribute('src', url);
-    document.getElementsByTagName('head')[0].appendChild(script);
-  }
+    };
+    script.setAttribute("src", url);
+    document.getElementsByTagName("head")[0].appendChild(script);
+  };
 
   const openSsodam = (link) => window.open(`http://ssodam.com/content/${link}`, "_blank");
-  const openNaver = () => goto(`nmap://search?query=${encodeURIComponent(location)}&appname=${getAppName()}`,
-    `https://map.naver.com/v5/search/${encodeURIComponent(location)}&appname=${getAppName()}`)
-  const openKakao = () => goto(`daummaps://search?query=${encodeURIComponent(location)}`,
-    `https://map.kakao.com/?q=${encodeURIComponent(location)}`)
+  const openNaver = () =>
+    goto(
+      `nmap://search?query=${encodeURIComponent(location)}&appname=${getAppName()}`,
+      `https://map.naver.com/v5/search/${encodeURIComponent(location)}&appname=${getAppName()}`
+    );
+  const openKakao = () =>
+    goto(
+      `daummaps://search?query=${encodeURIComponent(location)}`,
+      `https://map.kakao.com/?q=${encodeURIComponent(location)}`
+    );
 
   const addBadges = () => {
     const targetCategory = category[mainCategory];
-    const title = targetCategory.subCategory[subCategory]
+    const title = targetCategory.subCategory[subCategory];
     const color = targetCategory.rgb;
-    return <Badge style={{ color: 'white', backgroundColor: `rgba(${color}, 1.0)`, fontWeight: 'regular' }}>{title}</Badge>
-  }
+    return (
+      <Badge
+        style={{ color: "white", backgroundColor: `rgba(${color}, 1.0)`, fontWeight: "regular" }}
+      >
+        {title}
+      </Badge>
+    );
+  };
 
   const iconStyles = {
     width: "30px",
-    height: "30px"
-  }
+    height: "30px",
+  };
 
   return (
     <>
@@ -60,15 +72,13 @@ const SingleItemModal = (props) => {
 
               <br />
 
-              <Nav className="justify-content-between" >
-                <Nav.Item className="justify-content-start" >
-                  {addBadges()}
-                </Nav.Item>
-                <Nav className="justify-content-end" >
+              <Nav className="justify-content-between">
+                <Nav.Item className="justify-content-start">{addBadges()}</Nav.Item>
+                <Nav className="justify-content-end">
                   <Nav.Item>
                     <Image
                       src="/images/icons/ssodam.png"
-                      className="mr-3"
+                      className="mr-3 clickable"
                       alt="서담 아이콘"
                       onClick={() => openSsodam(link)}
                       style={iconStyles}
@@ -77,7 +87,7 @@ const SingleItemModal = (props) => {
                   <Nav.Item>
                     <Image
                       src="/images/icons/naver_map.png"
-                      className="mr-3"
+                      className="mr-3 clickable"
                       onClick={() => openNaver()}
                       alt="네이버 맵 아이콘"
                       style={iconStyles}
@@ -86,7 +96,7 @@ const SingleItemModal = (props) => {
                   <Nav.Item>
                     <Image
                       src="/images/icons/kakao_map.png"
-                      className="mr-3"
+                      className="mr-3 clickable"
                       onClick={() => openKakao()}
                       alt="카카오 맵 아이콘"
                       style={iconStyles}
@@ -97,7 +107,7 @@ const SingleItemModal = (props) => {
             </Card.Body>
           </Card>
         </Modal.Body>
-      </Modal >
+      </Modal>
     </>
   );
 };
