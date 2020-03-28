@@ -336,8 +336,8 @@ export default [
     link: 666128,
     description: "의외로 저평가된 홍대 치킨집. 삼겹살 메뉴도 맛있다.",
     geolocation: ["37.5554988", "126.9264304"],
-    mainCategory: 6,
-    subCategory: 1,
+    mainCategory: 3,
+    subCategory: 2,
   },
   {
     id: 35,
@@ -876,8 +876,8 @@ export default [
     link: 775082,
     description: "요거트 막걸리가 일품이다. 근데 주요 메뉴들은 다른 곳과 피차일반.",
     geolocation: ["37.5487807", "126.9386810"],
-    mainCategory: 4,
-    subCategory: 1,
+    mainCategory: 6,
+    subCategory: 0,
   },
   {
     id: 89,
