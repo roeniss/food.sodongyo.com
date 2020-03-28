@@ -1,28 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Navbar, Nav } from "react-bootstrap";
-import FilterModal from "./modals/FilterModal"
-import markerController from "../lib/MarkerController"
-import category from "../resources/data/category"
+import FilterModal from "./modals/FilterModal";
 
 const Header = () => {
-
   const [modalShow, setModalShow] = useState(null);
 
-  const [categoryIds, setCategoryIds] = useState(Array.from(Array(category.length).keys()))
-
   const showFilterModal = () => {
-    setModalShow(true)
-  }
+    setModalShow(true);
+  };
 
   const openTBDAlert = () => {
-    alert("삐빅! 맛게살이 제대한 후에 개발될 기능입니다.")
-  }
+    alert("삐빅! 맛게살이 제대한 후에 개발될 기능입니다.");
+  };
 
   const openEmailApp = () => {
-    alert("'sodongyocs@gmail.com'로 메일을 보내주세요.")
-    const tab = window.open('mailto:sodongyocs@gmail.com', '_blank');
+    alert("'sodongyocs@gmail.com'로 메일을 보내주세요.");
+    const tab = window.open("mailto:sodongyocs@gmail.com", "_blank");
     tab.focus();
-  }
+  };
 
   return (
     <Navbar expand="xl" bg="primary" variant="dark" fixed="top" className="header">
@@ -33,19 +28,20 @@ const Header = () => {
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto"></Nav>
         <Nav>
-          <Nav.Link href="#" onClick={showFilterModal}>메뉴 골라보기</Nav.Link>
-          <Nav.Link href="#" onClick={openTBDAlert}>리뷰 등록하기</Nav.Link>
-          <Nav.Link href="#" onClick={openEmailApp}>개발자에게 메일 보내기</Nav.Link>
+          <Nav.Link href="#" onClick={showFilterModal}>
+            메뉴 골라보기
+          </Nav.Link>
+          <Nav.Link href="#" onClick={openTBDAlert}>
+            리뷰 등록하기
+          </Nav.Link>
+          <Nav.Link href="#" onClick={openEmailApp}>
+            개발자에게 메일 보내기
+          </Nav.Link>
         </Nav>
       </Navbar.Collapse>
 
-      {
-        modalShow ? (
-          <FilterModal show={!!modalShow} onHide={() => setModalShow(null)} />
-        ) : null
-      }
-
-    </Navbar >
+      {modalShow ? <FilterModal show={!!modalShow} onHide={() => setModalShow(null)} /> : null}
+    </Navbar>
   );
 };
 

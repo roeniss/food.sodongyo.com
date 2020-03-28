@@ -19,7 +19,7 @@ const Content = () => {
     const map = drawNewMap("map");
     markerController.setVariables(map, setModalShow);
     markerController.drawMarkers();
-  }, [markerController]);
+  }, []);
 
   return (
     <>

@@ -1,7 +1,7 @@
 /*global naver */
 
 import locations from "../resources/data/mapdata";
-import category from "../resources/data/category"
+import category from "../resources/data/category";
 
 class MarkerController {
   constructor() {
@@ -10,7 +10,8 @@ class MarkerController {
     this._initializeMarkerDict();
     this.map = null;
     this.useStateSetter = null;
-    this.markerCategoryArr = Array(category.length).fill(null).map(() => Array());
+    /* eslint-disable no-array-constructor */
+    this.markerCategoryArr = new Array(category.length).fill(null).map(() => new Array());
   }
 
   setVariables(map, useStateSetter) {
@@ -37,17 +38,17 @@ class MarkerController {
         this.useStateSetter(location);
       });
 
-      this.markerCategoryArr[location.mainCategory].push(marker)
+      this.markerCategoryArr[location.mainCategory].push(marker);
     });
   }
 
   setCategoryVisibilityOnly(ids) {
     this.markerCategoryArr.forEach((category, id) => {
       const result = ids.includes(id);
-      category.forEach(marker => {
-        marker.setVisible(result)
-      })
-    })
+      category.forEach((marker) => {
+        marker.setVisible(result);
+      });
+    });
   }
 
   isVisibleCategory(id) {
@@ -58,9 +59,14 @@ class MarkerController {
     if (this.markerGeoDict[y][x].length === 1) {
       return new naver.maps.LatLng(y, x);
     } else {
-      const offset = 0.00005
-      const duplicateCnt = this.markerGeoDict[y][x].length - 2 // 0부터 시작하기 위해
-      const offsetArr = [[-offset, 0], [0, offset], [offset, 0], [0, -offset],]
+      const offset = 0.00005;
+      const duplicateCnt = this.markerGeoDict[y][x].length - 2; // 0부터 시작하기 위해
+      const offsetArr = [
+        [-offset, 0],
+        [0, offset],
+        [offset, 0],
+        [0, -offset],
+      ];
       y = parseFloat(y) + offsetArr[duplicateCnt % 4][1] * (parseInt(duplicateCnt / 4) + 1);
       x = parseFloat(x) + offsetArr[duplicateCnt % 4][0] * (parseInt(duplicateCnt / 4) + 1);
       return new naver.maps.LatLng(y, x);

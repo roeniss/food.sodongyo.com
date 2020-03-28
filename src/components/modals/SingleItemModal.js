@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, Card, Button, Image, Badge, Nav } from "react-bootstrap";
+import { Modal, Card, Image, Badge, Nav } from "react-bootstrap";
 import PropTypes from "prop-types";
 import { getAppName, isDevMode } from "../../lib/helper";
 import category from "../../resources/data/category";
@@ -39,7 +39,7 @@ const SingleItemModal = (props) => {
     const color = targetCategory.rgb;
     return (
       <Badge
-        style={{ color: "white", backgroundColor: `rgba(${color}, 1.0)`, fontWeight: "regular" }}
+        style={{ color: "white", backgroundCoqlor: `rgba(${color}, 1.0)`, fontWeight: "regular" }}
       >
         {title}
       </Badge>
