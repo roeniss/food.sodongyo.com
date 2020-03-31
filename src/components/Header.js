@@ -5,7 +5,9 @@ import FilterModal from "./modals/FilterModal";
 const Header = () => {
   const [modalShow, setModalShow] = useState(null);
 
-  const showFilterModal = () => {
+  const showFilterModal = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     setModalShow(true);
   };
 
