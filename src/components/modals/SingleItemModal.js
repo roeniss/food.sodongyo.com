@@ -31,7 +31,7 @@ const SingleItemModal = (props) => {
     const color = targetCategory.rgb;
     return (
       <Badge
-        style={{ color: "white", backgroundCoqlor: `rgba(${color}, 1.0)`, fontWeight: "regular" }}
+        style={{ color: "white", backgroundColor: `rgba(${color}, 1.0)`, fontWeight: "regular" }}
       >
         {title}
       </Badge>
