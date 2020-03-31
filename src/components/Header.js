@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import FilterModal from "./modals/FilterModal";
 
 const Header = () => {
   const [modalShow, setModalShow] = useState(null);
+  const filterModalBtn = useRef(null);
 
-  const showFilterModal = () => {
+  const showFilterModal = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    filterModalBtn.current.blur();
     setModalShow(true);
   };
 
@@ -28,7 +32,7 @@ const Header = () => {
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto"></Nav>
         <Nav>
-          <Nav.Link href="#" onClick={showFilterModal}>
+          <Nav.Link href="#" ref={filterModalBtn} onClick={showFilterModal}>
             메뉴 골라보기
           </Nav.Link>
           <Nav.Link href="#" onClick={openTBDAlert}>
@@ -39,7 +43,6 @@ const Header = () => {
           </Nav.Link>
         </Nav>
       </Navbar.Collapse>
-
       {modalShow ? <FilterModal show={!!modalShow} onHide={() => setModalShow(null)} /> : null}
     </Navbar>
   );

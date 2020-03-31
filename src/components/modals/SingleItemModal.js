@@ -9,13 +9,13 @@ const SingleItemModal = (props) => {
 
   const { id, name, location, link, description, mainCategory, subCategory } = props.data;
 
-  const goto = (url, fallback) => {
+  const goto = (url, fallbackUrl) => {
     var script = document.createElement("script");
     script.onload = function() {
       window.open(url, "_blank");
     };
-    script.onerror = function() {
-      window.open(fallback, "_blank");
+    script.onerror = function(a, b, c) {
+      window.open(fallbackUrl, "_blank");
     };
     script.setAttribute("src", url);
     document.getElementsByTagName("head")[0].appendChild(script);
