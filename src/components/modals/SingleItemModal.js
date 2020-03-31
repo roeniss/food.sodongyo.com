@@ -9,16 +9,24 @@ const SingleItemModal = (props) => {
 
   const { id, name, location, link, description, mainCategory, subCategory } = props.data;
 
-  const goto = (url, fallback) => {
+  const goto = (url, fallbackUrl) => {
     var script = document.createElement("script");
     script.onload = function() {
+      alert(url);
       window.open(url, "_blank");
     };
-    script.onerror = function() {
-      window.open(fallback, "_blank");
+    script.onerror = function(a, b, c) {
+      alert("?");
+      alert(fallbackUrl);
+      alert(JSON.stringify(a));
+      alert(b);
+      alert(c);
+      window.open(fallbackUrl, "_blank");
     };
     script.setAttribute("src", url);
+    alert(script);
     document.getElementsByTagName("head")[0].appendChild(script);
+    alert("짠");
   };
 
   const openSsodam = (link) => window.open(`http://ssodam.com/content/${link}`, "_blank");
