@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal, Card, Image, Badge, Nav } from "react-bootstrap";
 import PropTypes from "prop-types";
-import { getAppName, isDevMode } from "../../lib/helper";
+import { getAppName, isDevMode, isMobile } from "../../lib/helper";
 import category from "../../resources/data/category";
 
 const SingleItemModal = (props) => {
@@ -9,29 +9,21 @@ const SingleItemModal = (props) => {
 
   const { id, name, location, link, description, mainCategory, subCategory } = props.data;
 
-  const goto = (url, fallbackUrl) => {
-    var script = document.createElement("script");
-    script.onload = function() {
-      window.open(url, "_blank");
-    };
-    script.onerror = function(a, b, c) {
-      window.open(fallbackUrl, "_blank");
-    };
-    script.setAttribute("src", url);
-    document.getElementsByTagName("head")[0].appendChild(script);
+  const goto = (pcUrl, mobileUrl) => {
+    if (!mobileUrl) mobileUrl = pcUrl;
+    if (isMobile()) window.open(mobileUrl, "_blank");
+    else window.open(pcUrl, "_blank");
   };
 
   const openSsodam = (link) => window.open(`http://ssodam.com/content/${link}`, "_blank");
   const openNaver = () =>
     goto(
-      `nmap://search?query=${encodeURIComponent(location)}&appname=${getAppName()}`,
-      `https://map.naver.com/v5/search/${encodeURIComponent(location)}&appname=${getAppName()}`
+      `https://map.naver.com/v5/search/${encodeURIComponent(location)}&appname=${getAppName()}`,
+      `https://m.map.naver.com/search2/search.nhn?query=${encodeURIComponent(
+        location
+      )}&sm=hty&style=v5`
     );
-  const openKakao = () =>
-    goto(
-      `daummaps://search?query=${encodeURIComponent(location)}`,
-      `https://map.kakao.com/?q=${encodeURIComponent(location)}`
-    );
+  const openKakao = () => goto(`https://map.kakao.com/?q=${encodeURIComponent(location)}`);
 
   const addBadges = () => {
     const targetCategory = category[mainCategory];
