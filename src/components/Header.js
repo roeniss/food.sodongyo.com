@@ -43,7 +43,6 @@ const Header = () => {
           </Nav.Link>
         </Nav>
       </Navbar.Collapse>
-
       {modalShow ? <FilterModal show={!!modalShow} onHide={() => setModalShow(null)} /> : null}
     </Navbar>
   );
